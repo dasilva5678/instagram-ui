@@ -1,4 +1,11 @@
-import { FlatList, StyleSheet, View, Image, Text } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  ScrollView,
+} from "react-native";
 
 import Logo from "../../assets/logo.svg";
 import Stroke from "../../assets/stroke.svg";
@@ -8,6 +15,12 @@ import foto2 from "../../assets/foto2.png";
 import foto3 from "../../assets/foto3.png";
 import foto4 from "../../assets/foto4.png";
 import Points from "../../assets/points.svg";
+import Bookmark from "../../assets/Bookmark.svg";
+import image from "../../assets/image.png";
+import Heart from "../../assets/Heart.svg";
+import Comment from "../../assets/Comment.svg";
+import Share from "../../assets/Share.svg";
+import React from "react";
 
 const DATA = [
   {
@@ -53,35 +66,90 @@ export default function Home() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Logo />
-        <View>
+        <View style={styles.headerOptions}>
           <Stroke />
+          <Message />
         </View>
-        <Message />
       </View>
-      <View style={styles.stories}>
-        <FlatList
-          horizontal={true}
-          data={DATA}
-          keyExtractor={(item) => item.id}
-          renderItem={(item) => (
-            <View style={styles.storiesCard} key={item.item.id}>
-              <Image
-                source={item.item.photoUrl}
-                style={styles.storiesCardImage}
-              />
+      <ScrollView style={{ width: "100%" }}>
+        <View style={styles.stories}>
+          <FlatList
+            horizontal={true}
+            data={DATA}
+            keyExtractor={(item) => item.id}
+            renderItem={(item) => (
+              <View style={styles.storiesCard} key={item.item.id}>
+                <Image
+                  source={item.item.photoUrl}
+                  style={styles.storiesCardImage}
+                />
+              </View>
+            )}
+          />
+        </View>
+        <View style={styles.content}>
+          <View style={styles.contentHeader}>
+            <View style={styles.contentHeaderleft}>
+              <Image style={styles.contentHeaderImage} source={foto} />
+              <Text style={styles.contentHeaderText}>Jessica Costa</Text>
             </View>
-          )}
-        />
-      </View>
-      <View style={styles.content}>
-        <View style={styles.contentHeader}>
-          <View style={styles.contentHeaderleft}>
-            <Image style={styles.contentHeaderImage} source={foto} />
-            <Text style={styles.contentHeaderText}>Jessica Costa</Text>
+            <Points />
           </View>
-          <Points />
+          <View style={styles.contentImage}>
+            <Image source={image} />
+          </View>
+          <View style={styles.contentFooter}>
+            <View style={styles.contentFooterLeft}>
+              <Heart />
+              <Comment />
+              <Share />
+            </View>
+            <Bookmark />
+          </View>
+          <Text
+            style={{ color: "#fff", gap: 10, marginTop: 15, paddingLeft: 15 }}
+          >
+            clicklab How IOT is changing the world?
+          </Text>
+          <Text style={{ color: "#fff", marginLeft: 15 }}>
+            View all 3 comments
+          </Text>
+          <Text style={{ color: "#fff", fontSize: 10, marginLeft: 15 }}>
+            3 hours ago - See Translations
+          </Text>
         </View>
-      </View>
+        <View style={styles.content}>
+          <View style={styles.contentHeader}>
+            <View style={styles.contentHeaderleft}>
+              <Image style={styles.contentHeaderImage} source={foto} />
+              <Text style={styles.contentHeaderText}>Jessica Costa</Text>
+            </View>
+            <Points />
+          </View>
+          <View style={styles.contentImage}>
+            <Image source={image} />
+          </View>
+          <View style={styles.contentFooter}>
+            <View style={styles.contentFooterLeft}>
+              <Heart />
+              <Comment />
+              <Share />
+            </View>
+            <Bookmark />
+          </View>
+          <Text
+            style={{ color: "#fff", gap: 10, marginTop: 15, paddingLeft: 15 }}
+          >
+            clicklab How IOT is changing the world?
+          </Text>
+          <Text style={{ color: "#fff", marginLeft: 15 }}>
+            View all 3 comments
+          </Text>
+          <Text style={{ color: "#fff", fontSize: 10, marginLeft: 15 }}>
+            3 hours ago - See Translations
+          </Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -127,6 +195,7 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     marginBottom: 10,
+    paddingBottom: 40,
   },
   contentHeader: {
     alignItems: "center",
@@ -145,6 +214,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   contentHeaderleft: {
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 10,
+  },
+  contentImage: {
+    width: "100%",
+    height: 355,
+  },
+  contentFooter: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginTop: 10,
+  },
+  contentFooterLeft: {
     alignItems: "center",
     flexDirection: "row",
     gap: 10,
